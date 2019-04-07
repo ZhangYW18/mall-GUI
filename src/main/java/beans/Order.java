@@ -1,12 +1,13 @@
 package beans;
 
 import java.util.Date;
+import java.util.Map;
+import java.util.List;
 
 public class Order {
     private int id;
     private int clientID;
-    private int commodityID;
-    private int count;
+    private List<Map<Integer, Integer>> commodity;
     private Date startTime;
     private Date sentTime;
     private boolean isSent;
@@ -23,14 +24,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getCount() {
-        return count;
     }
 
     public boolean isSent() {
@@ -61,16 +54,16 @@ public class Order {
         return clientID;
     }
 
-    public int getCommodityID() {
-        return commodityID;
+    public List<Map<Integer, Integer>> getCommodity() {
+        return commodity;
     }
 
     public void setClientID(int clientID) {
         this.clientID = clientID;
     }
 
-    public void setCommodityID(int commodityID) {
-        this.commodityID = commodityID;
+    public void setCommodity(List<Map<Integer, Integer>> commodity) {
+        this.commodity = commodity;
     }
 
     public void setHasReceipt() {

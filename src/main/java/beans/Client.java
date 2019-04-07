@@ -5,7 +5,6 @@ import java.io.IOException;
 public class Client {
     private int id;
     private String name;
-    private boolean sex;
     private String address;
     private String phone;
     private String email;
@@ -28,14 +27,6 @@ public class Client {
 
     public void setName(String name){
         this.name = name;
-    }
-
-    public boolean getSex(){
-        return sex;
-    }
-
-    public void setSex(boolean sex) {
-        this.sex = sex;
     }
 
     public String getAddress(){
@@ -75,7 +66,6 @@ public class Client {
         return "(" +
                  id +
                 ", \'" + name +
-                "\', \'" + (sex?1:0) +
                 "\', \'" + address +
                 "\', \'" + phone +
                 "\', \'" + email +

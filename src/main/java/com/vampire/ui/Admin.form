@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="Admin" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="1054" height="411"/>
+      <xy x="20" y="20" width="1296" height="411"/>
     </constraints>
     <properties/>
     <clientProperties>
@@ -35,17 +35,12 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="4e745" class="javax.swing.JTable" binding="table1" default-binding="true">
+                  <component id="4e745" class="javax.swing.JTable" binding="clientTable">
                     <constraints/>
                     <properties/>
                   </component>
                 </children>
               </scrollpane>
-              <hspacer id="21b1">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="8" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </hspacer>
               <component id="a4fe5" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -60,14 +55,6 @@
                 </constraints>
                 <properties>
                   <text value="邮件"/>
-                </properties>
-              </component>
-              <component id="936e1" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="公司"/>
                 </properties>
               </component>
               <component id="86ff3" class="javax.swing.JLabel">
@@ -86,14 +73,6 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="bb334" class="javax.swing.JTextField" binding="clientAddress">
-                <constraints>
-                  <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties/>
-              </component>
               <component id="c0370" class="javax.swing.JTextField" binding="clientPhone">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -104,7 +83,7 @@
               </component>
               <component id="cc14a" class="javax.swing.JTextField" binding="clientEmail">
                 <constraints>
-                  <grid row="2" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
@@ -112,44 +91,11 @@
               </component>
               <component id="4ca97" class="javax.swing.JTextField" binding="clientCompany">
                 <constraints>
-                  <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="2" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
                 <properties/>
-              </component>
-              <component id="811fb" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="地址"/>
-                </properties>
-              </component>
-              <component id="3576" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="性别*"/>
-                </properties>
-              </component>
-              <component id="1d821" class="javax.swing.JRadioButton" binding="clientMale">
-                <constraints>
-                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="男"/>
-                </properties>
-              </component>
-              <component id="87fa3" class="javax.swing.JRadioButton" binding="clientFemale">
-                <constraints>
-                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="女"/>
-                </properties>
               </component>
               <component id="d113d" class="javax.swing.JButton" binding="addClient">
                 <constraints>
@@ -183,9 +129,57 @@
                   <text value="查询客户"/>
                 </properties>
               </component>
+              <component id="ef67c" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="*为必填项"/>
+                </properties>
+              </component>
+              <component id="811fb" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="地址"/>
+                </properties>
+              </component>
+              <component id="bb334" class="javax.swing.JTextField" binding="clientAddress">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="af87" class="javax.swing.JButton" binding="showAllClient">
+                <constraints>
+                  <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="显示所有客户"/>
+                </properties>
+              </component>
+              <component id="1c739" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="点击表格修改客户,修改后记得保存哦"/>
+                </properties>
+              </component>
+              <component id="936e1" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="公司"/>
+                </properties>
+              </component>
             </children>
           </grid>
-          <grid id="5a470" layout-manager="GridLayoutManager" row-count="4" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="5a470" layout-manager="GridLayoutManager" row-count="4" column-count="14" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="商品管理"/>
@@ -195,87 +189,186 @@
             <children>
               <scrollpane id="93728">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="11" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="14" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="ca229" class="javax.swing.JTable" default-binding="true">
+                  <component id="ca229" class="javax.swing.JTable" binding="commodityTable">
                     <constraints/>
                     <properties/>
                   </component>
                 </children>
               </scrollpane>
-              <hspacer id="ba364">
+              <component id="90761" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="8" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
-              </hspacer>
+                <properties>
+                  <text value="价格 *"/>
+                </properties>
+              </component>
+              <component id="5bd42" class="javax.swing.JTextField" binding="commodityDescription">
+                <constraints>
+                  <grid row="1" column="4" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="fe1a4" class="javax.swing.JTextField" binding="commodityPrice">
+                <constraints>
+                  <grid row="2" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="eedd8" class="javax.swing.JButton" binding="addCommodity">
+                <constraints>
+                  <grid row="1" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="增加商品"/>
+                </properties>
+              </component>
+              <component id="d0940" class="javax.swing.JButton" binding="deleteCommodity">
+                <constraints>
+                  <grid row="1" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="删除商品"/>
+                </properties>
+              </component>
+              <component id="c951c" class="javax.swing.JButton" binding="saveCommodity">
+                <constraints>
+                  <grid row="2" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="保存当前表格"/>
+                </properties>
+              </component>
+              <component id="a1f82" class="javax.swing.JButton" binding="searchCommodity">
+                <constraints>
+                  <grid row="2" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="查询商品"/>
+                </properties>
+              </component>
+              <component id="7a2c1" class="javax.swing.JButton" binding="showAllCommodity">
+                <constraints>
+                  <grid row="0" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="显示所有商品"/>
+                </properties>
+              </component>
+              <component id="ab697" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="/个"/>
+                </properties>
+              </component>
+              <component id="625e9" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="￥"/>
+                </properties>
+              </component>
+              <component id="da62d" class="javax.swing.JTextField" binding="commodityBrand">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="7b7b2" class="javax.swing.JTextField" binding="commodityName">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
               <component id="2364b" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="品牌"/>
+                </properties>
+              </component>
+              <component id="212cd" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="电话"/>
+                  <text value="货号*"/>
                 </properties>
               </component>
-              <component id="85d29" class="javax.swing.JLabel">
+              <component id="de438" class="javax.swing.JTextField" binding="commodityNumber">
                 <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
                 </constraints>
-                <properties>
-                  <text value="邮件"/>
-                </properties>
-              </component>
-              <component id="90761" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="公司"/>
-                </properties>
+                <properties/>
               </component>
               <component id="cfb5d" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="姓名"/>
+                  <text value="名称*"/>
                 </properties>
               </component>
-              <component id="7b7b2" class="javax.swing.JTextField" default-binding="true">
+              <component id="a4f05" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <text value="(数字+字母)"/>
+                </properties>
               </component>
-              <component id="5bd42" class="javax.swing.JTextField" default-binding="true">
+              <component id="3d34b" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <text value="描述"/>
+                </properties>
               </component>
-              <component id="da62d" class="javax.swing.JTextField" default-binding="true">
+              <component id="9e9be" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
+                  <grid row="0" column="4" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <text value="点击表格修改商品,修改后记得保存哦"/>
+                </properties>
               </component>
-              <component id="e5a6b" class="javax.swing.JTextField" default-binding="true">
+              <component id="21c31" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="2" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <text value="*为必填项"/>
+                </properties>
               </component>
-              <component id="fe1a4" class="javax.swing.JTextField" default-binding="true">
+              <component id="d3496" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="库存*"/>
+                </properties>
+              </component>
+              <component id="564b4" class="javax.swing.JTextField" binding="commodityCount">
                 <constraints>
                   <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -283,68 +376,38 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="3d34b" class="javax.swing.JLabel">
+              <component id="a136" class="javax.swing.JButton" binding="addCommodityCountButton">
                 <constraints>
-                  <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="地址"/>
+                  <text value="增加库存"/>
                 </properties>
               </component>
-              <component id="ef6c3" class="javax.swing.JLabel">
+              <component id="b186d" class="javax.swing.JTextField" binding="addCommodityCount">
                 <constraints>
-                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="8" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
                 </constraints>
                 <properties>
-                  <text value="性别"/>
+                  <text value=""/>
                 </properties>
               </component>
-              <component id="8f964" class="javax.swing.JRadioButton" default-binding="true">
+              <component id="6bcc" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="男"/>
+                  <text value="增加库存"/>
                 </properties>
               </component>
-              <component id="7aa66" class="javax.swing.JRadioButton" default-binding="true">
+              <component id="bed67" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="女"/>
-                </properties>
-              </component>
-              <component id="eedd8" class="javax.swing.JButton">
-                <constraints>
-                  <grid row="1" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="增加客户"/>
-                </properties>
-              </component>
-              <component id="d0940" class="javax.swing.JButton">
-                <constraints>
-                  <grid row="1" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="删除客户"/>
-                </properties>
-              </component>
-              <component id="c951c" class="javax.swing.JButton">
-                <constraints>
-                  <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="保存当前表格"/>
-                </properties>
-              </component>
-              <component id="a1f82" class="javax.swing.JButton">
-                <constraints>
-                  <grid row="2" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="查询客户"/>
+                  <text value="个"/>
                 </properties>
               </component>
             </children>

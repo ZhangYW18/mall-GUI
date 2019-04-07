@@ -1,22 +1,31 @@
 package beans;
 
 public class Commodity {
-    private int id;
+    private String id;
+    private String name;
+    private String description;
+    private String brand;
+    private int price;
     private int count;
     private int sold;
-    private int price;
-    private String name;
-    private String brand;
 
     public Commodity() {
         sold=0;
     }
 
-    public void setId(int id) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -60,11 +69,4 @@ public class Commodity {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "(" +
-                id + ", " + count + ", " + sold + ", " + price +
-                ", \'" + name +
-                "\', \'" + brand + "\')";
-    }
 }

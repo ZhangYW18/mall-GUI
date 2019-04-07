@@ -70,7 +70,7 @@ public class CommodityUtils {
 
     //根据ID查找客户信息
     public Map<String, Object> searchCommodityByID(String id) {
-        String sql = "select * from Commodity where id LIKE  \'%" + id + "%\'";
+        String sql = "select * from Commodity where id LIKE \'" + id + "\'";
 
         Map<String, Object> map = new HashMap<String, Object>();
         try {
@@ -146,5 +146,18 @@ public class CommodityUtils {
     }
 
 
+
+    public boolean addCommodityCountByID(String ID,int count) {
+        String sql = "";
+        sql = "update Commodity set count = count + " +count + " where id = \'" + ID + "\'";
+
+        boolean flag = false;
+        try {
+            flag = jdbcUtils.updateByPreparedStatement(sql, null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }
 

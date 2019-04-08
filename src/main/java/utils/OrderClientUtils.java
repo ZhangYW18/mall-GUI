@@ -1,34 +1,36 @@
 /*
  * @author VampireWeekend
- * @date 19-4-6 下午6:41
+ * @date 19-4-7 下午10:14
+ */
+
+/*
+ * @author VampireWeekend
+ * @date 19-4-7 下午9:30
  */
 
 package utils;
 
-
-import javax.sound.midi.Soundbank;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
+
 import utils.*;
 
-
-public class CommodityUtils {
+public class OrderClientUtils {
     private JdbcUtils jdbcUtils;
-    private String[] tableStrings = {"id", "name", "description", "brand", "price", "count", "sold"};
+    private String[] tableStrings = {"orderID", "clientID", "clientName", "startTime",
+            "money", "isPaid", "isSent", "sentTime", "hasReceipt"};
 
-    public CommodityUtils() {
+    public OrderClientUtils() {
         jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
     }
 
+    // 获得所有订单信息
+    // done
 
-    //获得所有客户信息
-
-    public List<Map<String, Object>> findAllCommodity() {
-        String sql = "select * from Commodity";
+    public List<Map<String, Object>> findAllOrderClient() {
+        String sql = "select * from OrderClient";
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {
@@ -41,14 +43,14 @@ public class CommodityUtils {
         return list;
     }
 
+    // Bookmark 2019/4/7
     //查找客户信息
 
-    public List<Map<String, Object>> searchCommodity(Map<String, Object> row) {
-        String sql = "select * from Commodity where ";
+    public List<Map<String, Object>> searchOrderClient(Map<String, Object> row) {
+        String sql = "select * from OrderClient where ";
         List<Object> params = new ArrayList<Object>();
 
 
-        //      sql = "select * from Commodity where TRUE AND sex=1 AND name LIKE \'%so%\' AND address LIKE \'%%\'";
         int cnt=0;
         for (int i=0;i<tableStrings.length;i++) {
             if (row.get(tableStrings[i]) == null) continue;
@@ -68,9 +70,10 @@ public class CommodityUtils {
         return list;
     }
 
-    //根据ID查找客户信息
-    public Map<String, Object> searchCommodityByID(String id) {
-        String sql = "select * from Commodity where id LIKE \'" + id + "\'";
+    // done
+    //根据ID查找订单信息
+    public Map<String, Object> searchOrderClientByOrderID(int orderID) {
+        String sql = "select * from OrderClient where orderID = " + orderID;
 
         Map<String, Object> map = new HashMap<String, Object>();
         try {
@@ -85,13 +88,13 @@ public class CommodityUtils {
     }
 
     //增加一个客户
-
-    public boolean addCommodity(Map<String, Object> row) {
-        String sql = "insert into Commodity values (?, ?, ?, ?, ?, ?, ?)";
+    //done
+    public boolean addOrderClient(Map<String, Object> row) {
+        String sql = "insert into OrderClient values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         List<Object> params = new ArrayList<Object>();
 
         for (int i=0;i<tableStrings.length;i++) {
-            if (row.get(tableStrings[i])!=null) params.add(row.get(tableStrings[i])); else params.add("");
+            params.add(row.get(tableStrings[i]));
         }
 
         boolean flag = false;
@@ -105,8 +108,8 @@ public class CommodityUtils {
 
     //删除一个客户
 
-    public boolean removeCommodity(String id) {
-        String sql = "delete from Commodity where id = ?";
+    public boolean removeOrderClient(String id) {
+        String sql = "delete from OrderClient where id = ?";
         List<Object> params = new ArrayList<Object>();
         params.add(id);
         boolean flag = false;
@@ -118,24 +121,18 @@ public class CommodityUtils {
         return flag;
     }
 
+    // done
+    // 保存一个订单的客户
 
-    // 保存一个客户
-
-    public boolean saveCommodity(Map<String, Object> map) {
+    public boolean saveOrderClient(int orderID, int clientID) {
         String sql = "";
-        if (map.containsKey("id")) {
-            sql = "update Commodity set name = ? , description = ?, brand = ?, price = ?, count = ? where id = ?";
-        }
+        sql = "update OrderClient set clientID = " + clientID + ", clientName = ? where orderID = " + orderID;
 
+        ClientUtils clientUtils = new ClientUtils();
+        String searchName = clientUtils.searchClientByID(clientID).get("name").toString();
         List<Object> params = new ArrayList<Object>();
-        params.add(map.get("name"));
-        params.add(map.get("description"));
-        params.add(map.get("brand"));
-        params.add(map.get("price"));
-        params.add(map.get("count"));
-        params.add(map.get("id"));
+        params.add(searchName);
 
-        //     System.out.println(map.get("address"));
         boolean flag = false;
         try {
             flag = jdbcUtils.updateByPreparedStatement(sql, params);
@@ -145,11 +142,12 @@ public class CommodityUtils {
         return flag;
     }
 
-    //根据ID查找商品
+    // done
+    // 改变订单状态
 
-    public boolean addCommodityCountByID(String ID,int count) {
+    public boolean changeBoolean(int orderID,String column) {
         String sql = "";
-        sql = "update Commodity set count = count + " +count + " where id = \'" + ID + "\'";
+        sql = "update OrderClient set " + column + " = 1 - " + column + " where orderID = " + orderID;
 
         boolean flag = false;
         try {
@@ -159,5 +157,26 @@ public class CommodityUtils {
         }
         return flag;
     }
+
+    // 向表中填入现有时间
+    // done
+
+    public boolean changeDateByNow(int orderID,String column) {
+        Date date = new Date();
+        Timestamp timeStamp = new Timestamp(date.getTime());
+        String sql = "";
+        sql = "update OrderClient set " + column + " = ? where orderID = " + orderID;
+
+        List<Object> params = new ArrayList<Object>();
+        params.add(timeStamp);
+        boolean flag = false;
+        try {
+            flag = jdbcUtils.updateByPreparedStatement(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
 }
 

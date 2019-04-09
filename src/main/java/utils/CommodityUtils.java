@@ -145,7 +145,7 @@ public class CommodityUtils {
         return flag;
     }
 
-    //根据ID查找商品
+    //根据ID增加商品存货
 
     public boolean addCommodityCountByID(String ID,int count) {
         String sql = "";
@@ -154,6 +154,29 @@ public class CommodityUtils {
         boolean flag = false;
         try {
             flag = jdbcUtils.updateByPreparedStatement(sql, null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    //根据ID增加商品卖出数量
+
+    public boolean addCommoditySoldByID(String ID,int sold) {
+        String sql = "";
+        sql = "update Commodity set sold = sold + " + sold + " where id = \'" + ID + "\'";
+
+        boolean flag = false;
+        try {
+            flag = jdbcUtils.updateByPreparedStatement(sql, null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "update Commodity set count = count - " + sold + " where id = \'" + ID + "\'";
+
+        try {
+            flag &= jdbcUtils.updateByPreparedStatement(sql, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }

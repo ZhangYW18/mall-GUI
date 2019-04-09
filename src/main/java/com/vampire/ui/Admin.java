@@ -1,3 +1,12 @@
+/*
+ * @author VampireWeekend
+ * @date
+ */
+
+/* To-Do List:
+ * 删除需要增加条件
+ */
+
 package com.vampire.ui;
 
 import javax.swing.*;
@@ -42,11 +51,10 @@ public class Admin {
     private JTextField commodityDescription;
     private JTextField addCommodityCount;
     private JTable commodityTable;
-    private JButton 开具发票Button1;
     private JRadioButton 按客户编号RadioButton;
     private JRadioButton 按商品货号RadioButton;
-    private JTextField textField1;
-    private JButton 删除货物Button;
+    private JTextField orderCommodityCount;
+    private JButton deleteOrderCommodity;
     private JTable orderClientTable;
     private JTable orderCommodityTable;
     private JButton showAllOrder;
@@ -57,12 +65,16 @@ public class Admin {
     private JTextField orderClientID;
     private JRadioButton notPaidYet;
     private JRadioButton notSentYet;
+    private JButton addOrderCommodity;
+    private JTextField orderCommodityID;
+    private JButton updateCommodityCount;
+    private JButton deleteOrder;
     private JFrame frame;
 
     private ClientModel clientModel;
     private CommodityModel commodityModel;
     private OrderClientModel orderClientModel;
-    //   private OrderCommodityModel orderCommodityModel;
+    private OrderCommodityModel orderCommodityModel;
 
     private boolean isJTextFieldNull(JTextField jTextField, String name) {
         String nameText = jTextField.getText();
@@ -89,9 +101,9 @@ public class Admin {
         orderClientModel = new OrderClientModel();
         orderClientTable.setModel(orderClientModel);
 
-        //      orderCommodityModel = new OrderCommodityModel();
-        //      orderCommodityTable.setModel(orderCommodityModel);
-
+        orderCommodityModel = new OrderCommodityModel();
+        orderCommodityModel.orderCommodityList.clear();
+        orderCommodityTable.setModel(orderCommodityModel);
 
         //调整各列比例
 
@@ -141,7 +153,7 @@ public class Admin {
         orderClientTable.setSelectionModel(orderClientTableSelectionModel);
 
         orderCommodityTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        ListSelectionModel orderCommodityTableSelectionModel = orderCommodityTable.getSelectionModel();
+        final ListSelectionModel orderCommodityTableSelectionModel = orderCommodityTable.getSelectionModel();
         orderCommodityTableSelectionModel
                 .setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         orderCommodityTable.setSelectionModel(orderCommodityTableSelectionModel);
@@ -210,6 +222,7 @@ public class Admin {
 
 
         //删除客户
+        //需要先删除该客户所有订单
         //test passed 2019/4/6
 
         deleteClient.addActionListener(new ActionListener() {
@@ -217,6 +230,13 @@ public class Admin {
             public void actionPerformed(ActionEvent e) {
 
                 if (clientTable.getSelectedRow() > -1) {
+                    int rowIndex = clientTable.getSelectedRow();
+                    int clientID = Integer.parseInt(clientTable.getValueAt(rowIndex, 0).toString());
+                    if (orderClientModel.orderClientUtils.searchOrderClientByClientID(clientID).size() > 0) {
+                        JOptionPane.showMessageDialog(frame, "该客户还有未删除的订单",
+                                "提示", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
                     clientModel.remove(clientTable.getSelectedRow());
                 } else {
                     JOptionPane.showMessageDialog(frame, "请选择一行", "提示", JOptionPane.INFORMATION_MESSAGE);
@@ -442,6 +462,21 @@ public class Admin {
 
         // Order Page, Order-Client Part
 
+        //客户编号只能纯数字
+        //test passed ???????
+
+        orderClientID.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char keyChar = e.getKeyChar();
+                if (keyChar >= '0' && keyChar <= '9') {
+
+                } else if (keyChar != '.') {
+                    e.consume(); //屏蔽掉非法输入
+                }
+            }
+        });
+
+        // 添加订单
         // 需要测试客户找不到的情况
         // test passed 2019/4/8
 
@@ -481,6 +516,31 @@ public class Admin {
                 map.put("hasReceipt", 0);
 
                 orderClientModel.addRow(map);
+            }
+        });
+
+        // 删除订单
+        // test passed ????????
+
+        deleteOrder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                if (orderClientTable.getSelectedRow() > -1) {
+                } else {
+                    JOptionPane.showMessageDialog(frame, "请在右表选择一个商品", "提示",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                int orderID = orderClientModel.getSelectedOrderID();
+
+                orderClientModel.remove(orderClientTable.getSelectedRow());
+
+                int sz = orderCommodityModel.orderCommodityList.size();
+                for (int i = 0; i < sz; i++) {
+                    String commodityID = orderCommodityTable.getValueAt(0, 0).toString();
+                    orderCommodityModel.remove(0, orderID, commodityID);
+                }
             }
         });
 
@@ -536,10 +596,21 @@ public class Admin {
         });
 
         // 改变订单客户
-        // test passed 2019/4/8
+        // test passed 2019/4/9
 
         changeOrderClient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                int sz = orderClientModel.orderClientList.size();
+                for (int i = 0; i < sz; i++) {
+                    String clientID = orderClientModel.getValueAt(i, 1).toString();
+                    Map<String, Object> client = clientModel.clientUtils.searchClientByID(Integer.parseInt(clientID));
+                    if (client.size() == 0) {
+                        JOptionPane.showMessageDialog(frame, "不存在的客户编号", "提示", JOptionPane.INFORMATION_MESSAGE);
+                        orderClientModel.showAll();
+                        return;
+                    }
+                }
 
                 orderClientModel.changeOrderClient();
 
@@ -549,13 +620,198 @@ public class Admin {
         // Order Page, Order-Commodity Part
 
         // 根据左表订单的选择，更改右表的订单商品列表
+        // test passed 2019/4/9
 
         orderClientTableSelectionModel
                 .addListSelectionListener(new ListSelectionListener() {
                     public void valueChanged(ListSelectionEvent e) {
-
+                        //       System.out.println("左表改变了");
+                        if (orderClientTable.getSelectedRow() <= -1) {
+                            orderCommodityModel.orderCommodityList.clear();
+                            return;
+                        }
+                        int orderID = orderClientModel.getSelectedOrderID();
+                        orderCommodityModel.showOrderID(orderID);
                     }
                 });
+
+        //商品货号只能纯数字+字母
+        //test passed 2019/4/9
+
+        orderCommodityID.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char keyChar = e.getKeyChar();
+                if (keyChar >= '0' && keyChar <= '9') {
+
+                } else if (keyChar >= 'a' && keyChar <= 'z') {
+
+                } else if (keyChar >= 'A' && keyChar <= 'Z') {
+
+                } else if (keyChar != '.') {
+                    e.consume(); //屏蔽掉非法输入
+                }
+            }
+        });
+
+        //商品数量只能纯数字
+        //test passed 2019/4/9
+
+        orderCommodityCount.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char keyChar = e.getKeyChar();
+                if (keyChar >= '0' && keyChar <= '9') {
+
+                } else if (keyChar != '.') {
+                    e.consume(); //屏蔽掉非法输入
+                }
+            }
+        });
+
+        //增加订单货物
+        // test passed 2019/4/9
+
+        addOrderCommodity.addActionListener(new ActionListener() {
+            //          @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isJTextFieldNull(orderCommodityID, "商品货号")) return;
+                if (isJTextFieldNull(orderCommodityCount, "商品数量")) return;
+
+                if (orderClientTable.getSelectedRow() > -1) {
+                    int rowIndex = orderClientTable.getSelectedRow();
+                    int orderID = orderClientModel.getSelectedOrderID();
+                    String commodityID = orderCommodityID.getText();
+
+                    if (orderCommodityModel.orderCommodityUtils.searchOrderCommodity(orderID, commodityID).size() > 0) {
+                        JOptionPane.showMessageDialog(frame, "选定订单已有该商品",
+                                "提示", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+
+                    int count = Integer.parseInt(orderCommodityCount.getText());
+                    Map<String, Object> commodity = commodityModel.commodityUtils.searchCommodityByID(commodityID);
+                    if (commodity.size() < 1) {
+                        JOptionPane.showMessageDialog(frame, "没有该商品",
+                                "提示", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                    if (count > Integer.parseInt(commodity.get("count").toString())) {
+                        JOptionPane.showMessageDialog(frame, "商品库存不足",
+                                "提示", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    map.put("orderID", orderID);
+                    map.put("commodityID", commodityID);
+                    map.put("count", count);
+                    map.put("price", commodity.get("price"));
+                    map.put("commodityName", commodity.get("name"));
+
+                    orderCommodityModel.addRow(map);
+
+                    // 对应商品卖出数量也增加，库存减少
+                    commodityModel.commodityUtils.addCommoditySoldByID(commodityID, count);
+                    commodityModel.updateAll();
+
+                    // 更新订单金额
+                    orderClientModel.updateMoney(rowIndex, orderID,
+                            Double.parseDouble(commodity.get("price").toString()) * ((double) count));
+
+                } else {
+                    JOptionPane.showMessageDialog(frame, "请在左表选择一个订单", "提示", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        //更新商品数量
+        // test passed 2019/4/9
+
+        updateCommodityCount.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                if (orderClientTable.getSelectedRow() > -1) {
+
+                } else {
+                    JOptionPane.showMessageDialog(frame, "请在左表选择一个订单", "提示",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                int rowIndex = orderClientTable.getSelectedRow();
+                if (isJTextFieldNull(orderCommodityID, "商品货号")) return;
+                if (isJTextFieldNull(orderCommodityCount, "商品数量")) return;
+
+                String commodityID = orderCommodityID.getText();
+                Map<String, Object> commodity = commodityModel.commodityUtils.searchCommodityByID(commodityID);
+                if (commodity.size() < 1) {
+                    JOptionPane.showMessageDialog(frame, "没有该商品",
+                            "提示", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                int orderID = orderClientModel.getSelectedOrderID();
+                int count = Integer.parseInt(orderCommodityCount.getText());
+                int nowCount = Integer.parseInt(orderCommodityModel.orderCommodityUtils.
+                        searchOrderCommodity(orderID, commodityID).get("count").toString());
+                int oriCount = Integer.parseInt(commodity.get("count").toString());
+                if (count - nowCount > oriCount) {
+                    JOptionPane.showMessageDialog(frame, "商品库存不足",
+                            "提示", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                orderCommodityModel.addCommodityCount(count - nowCount, orderID, commodityID);
+
+                commodityModel.commodityUtils.addCommoditySoldByID(commodityID, count - nowCount);
+                commodityModel.updateAll();
+
+                // 更新订单金额
+                orderClientModel.updateMoney(rowIndex, orderID,
+                        Double.parseDouble(commodity.get("price").toString()) * ((double) (count - nowCount)));
+
+            }
+        });
+
+        // 删除订单的商品
+        // test passed 2019/4/9
+
+        deleteOrderCommodity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                if (orderClientTable.getSelectedRow() > -1) {
+
+                } else {
+                    JOptionPane.showMessageDialog(frame, "请在左表选择一个订单", "提示",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                int rowIndex = orderClientTable.getSelectedRow();
+
+                if (orderCommodityTable.getSelectedRow() > -1) {
+                } else {
+                    JOptionPane.showMessageDialog(frame, "请在右表选择一个商品", "提示",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                String commodityID = orderCommodityTable.getValueAt
+                        (orderCommodityTable.getSelectedRow(), 0).toString();
+                int orderID = orderClientModel.getSelectedOrderID();
+                Map<String, Object> orderCommodity = orderCommodityModel.orderCommodityUtils.searchOrderCommodity(orderID, commodityID);
+
+                orderCommodityModel.remove(orderCommodityTable.getSelectedRow(), orderID, commodityID);
+
+                //更新商品卖出数量
+                int addCount = -Integer.parseInt(orderCommodity.get("count").toString());
+                commodityModel.commodityUtils.addCommoditySoldByID(commodityID, addCount);
+                commodityModel.updateAll();
+
+                // 更新订单金额
+                orderClientModel.updateMoney(rowIndex, orderID,
+                        Double.parseDouble(orderCommodity.get("price").toString()) * ((double) (addCount)));
+
+            }
+        });
 
         //退出
         //test passed 2019/4/6
@@ -731,19 +987,16 @@ public class Admin {
         final JLabel label21 = new JLabel();
         label21.setText("客户编号*");
         panel3.add(label21, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label22 = new JLabel();
-        label22.setText("*为必填项");
-        panel3.add(label22, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         orderClientID = new JTextField();
         panel3.add(orderClientID, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        final JLabel label22 = new JLabel();
+        label22.setText("商品货号*");
+        panel3.add(label22, new com.intellij.uiDesigner.core.GridConstraints(1, 6, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        orderCommodityID = new JTextField();
+        panel3.add(orderCommodityID, new com.intellij.uiDesigner.core.GridConstraints(1, 7, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label23 = new JLabel();
-        label23.setText("商品货号*");
-        panel3.add(label23, new com.intellij.uiDesigner.core.GridConstraints(1, 6, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JTextField textField2 = new JTextField();
-        panel3.add(textField2, new com.intellij.uiDesigner.core.GridConstraints(1, 7, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final JLabel label24 = new JLabel();
-        label24.setText("对方是否付款*");
-        panel3.add(label24, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label23.setText("对方是否付款*");
+        panel3.add(label23, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JRadioButton radioButton1 = new JRadioButton();
         radioButton1.setSelected(false);
         radioButton1.setText("是");
@@ -752,9 +1005,9 @@ public class Admin {
         notPaidYet.setSelected(true);
         notPaidYet.setText("否");
         panel3.add(notPaidYet, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label25 = new JLabel();
-        label25.setText("货物是否送出*");
-        panel3.add(label25, new com.intellij.uiDesigner.core.GridConstraints(2, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label24 = new JLabel();
+        label24.setText("货物是否送出*");
+        panel3.add(label24, new com.intellij.uiDesigner.core.GridConstraints(2, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JRadioButton radioButton2 = new JRadioButton();
         radioButton2.setText("是");
         panel3.add(radioButton2, new com.intellij.uiDesigner.core.GridConstraints(2, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -766,15 +1019,12 @@ public class Admin {
         panel3.add(scrollPane4, new com.intellij.uiDesigner.core.GridConstraints(3, 8, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         orderCommodityTable = new JTable();
         scrollPane4.setViewportView(orderCommodityTable);
-        开具发票Button1 = new JButton();
-        开具发票Button1.setText("开具发票");
-        panel3.add(开具发票Button1, new com.intellij.uiDesigner.core.GridConstraints(1, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         addOrderClient = new JButton();
         addOrderClient.setText("创建订单");
         panel3.add(addOrderClient, new com.intellij.uiDesigner.core.GridConstraints(1, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JButton button1 = new JButton();
-        button1.setText("删除订单");
-        panel3.add(button1, new com.intellij.uiDesigner.core.GridConstraints(0, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        deleteOrder = new JButton();
+        deleteOrder.setText("删除订单");
+        panel3.add(deleteOrder, new com.intellij.uiDesigner.core.GridConstraints(0, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showAllOrder = new JButton();
         showAllOrder.setText("显示所有订单");
         panel3.add(showAllOrder, new com.intellij.uiDesigner.core.GridConstraints(0, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -788,27 +1038,34 @@ public class Admin {
         changeOrderIsPaid = new JButton();
         changeOrderIsPaid.setText("更改订单付款状态");
         panel3.add(changeOrderIsPaid, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label26 = new JLabel();
-        label26.setText("数量*");
-        panel3.add(label26, new com.intellij.uiDesigner.core.GridConstraints(2, 6, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        textField1 = new JTextField();
-        panel3.add(textField1, new com.intellij.uiDesigner.core.GridConstraints(2, 7, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        final JLabel label25 = new JLabel();
+        label25.setText("数量*");
+        panel3.add(label25, new com.intellij.uiDesigner.core.GridConstraints(2, 6, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        orderCommodityCount = new JTextField();
+        orderCommodityCount.setText("");
+        panel3.add(orderCommodityCount, new com.intellij.uiDesigner.core.GridConstraints(2, 7, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         按商品货号RadioButton = new JRadioButton();
         按商品货号RadioButton.setEnabled(true);
         按商品货号RadioButton.setText("按商品货号");
         panel3.add(按商品货号RadioButton, new com.intellij.uiDesigner.core.GridConstraints(0, 8, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        删除货物Button = new JButton();
-        删除货物Button.setText("删除货物");
-        panel3.add(删除货物Button, new com.intellij.uiDesigner.core.GridConstraints(2, 9, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JButton button2 = new JButton();
-        button2.setText("查询订单");
-        panel3.add(button2, new com.intellij.uiDesigner.core.GridConstraints(0, 9, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JButton button3 = new JButton();
-        button3.setText("增加货物");
-        panel3.add(button3, new com.intellij.uiDesigner.core.GridConstraints(1, 9, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        deleteOrderCommodity = new JButton();
+        deleteOrderCommodity.setText("删除货物");
+        panel3.add(deleteOrderCommodity, new com.intellij.uiDesigner.core.GridConstraints(2, 9, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JButton button1 = new JButton();
+        button1.setText("查询订单");
+        panel3.add(button1, new com.intellij.uiDesigner.core.GridConstraints(0, 9, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        addOrderCommodity = new JButton();
+        addOrderCommodity.setText("增加货物");
+        panel3.add(addOrderCommodity, new com.intellij.uiDesigner.core.GridConstraints(1, 9, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        updateCommodityCount = new JButton();
+        updateCommodityCount.setText("更新货物数量");
+        panel3.add(updateCommodityCount, new com.intellij.uiDesigner.core.GridConstraints(2, 8, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         changeOrderClient = new JButton();
-        changeOrderClient.setText("保存客户号修改");
-        panel3.add(changeOrderClient, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        changeOrderClient.setText("保存当前表格");
+        panel3.add(changeOrderClient, new com.intellij.uiDesigner.core.GridConstraints(1, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label26 = new JLabel();
+        label26.setText("*为必填项");
+        panel3.add(label26, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
         Admin.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         exitButton = new JButton();
@@ -834,6 +1091,10 @@ public class Admin {
      */
     public JComponent $$$getRootComponent$$$() {
         return Admin;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 
 
@@ -1001,6 +1262,15 @@ public class Admin {
             fireTableDataChanged();
         }
 
+        public void updateAll() {
+            int sz = commodityList.size();
+            for (int i = 0; i < sz; i++) {
+                String id = commodityList.get(i).get("id").toString();
+                commodityList.set(i, commodityUtils.searchCommodityByID(id));
+            }
+            fireTableDataChanged();
+        }
+
         public int getSize() {
             return size;
         }
@@ -1069,11 +1339,20 @@ public class Admin {
             fireTableDataChanged();
         }
 
-        public void searchRow(Map<String, Object> row) {
+      /*  public void searchRow(Map<String, Object> row) {
             orderClientList = orderClientUtils.searchOrderClient(row);
             fireTableDataChanged();
+        }   */
+
+        public int getSelectedOrderID() {
+            return Integer.parseInt(orderClientTable.getValueAt(orderClientTable.getSelectedRow(), 0).toString());
         }
 
+        public void updateMoney(int rowIndex, int orderID, double money) {
+            orderClientUtils.updateMoney(orderID, money);
+            orderClientList.set(rowIndex, orderClientUtils.searchOrderClientByOrderID(orderID));
+            fireTableDataChanged();
+        }
 
         //done
 
@@ -1093,11 +1372,11 @@ public class Admin {
 
         }
 
-
+        // done
         public void remove(int rowIndex) {
             //             int id = Integer.parseInt(map.get("id").toString());
-            String id = orderClientList.get(rowIndex).get("id").toString();
-            orderClientUtils.removeOrderClient(id);
+            String orderID = orderClientList.get(rowIndex).get("orderID").toString();
+            orderClientUtils.removeOrderClient(orderID);
 
             orderClientList.remove(rowIndex);
             size--;
@@ -1175,103 +1454,86 @@ public class Admin {
 
     }
 
- /*   private class orderCommodityModel extends AbstractTableModel {
+    private class OrderCommodityModel extends AbstractTableModel {
 
 
-        CommodityUtils commodityUtils = new CommodityUtils();
-        List<Map<String, Object>> commodityList = commodityUtils.findAllCommodity();
-        private int size = commodityList.size();
+        OrderCommodityUtils orderCommodityUtils = new OrderCommodityUtils();
+        List<Map<String, Object>> orderCommodityList = orderCommodityUtils.findAllOrderCommodity();
+        private int size = orderCommodityList.size();
 
-        String[] tableStrings = {"id", "name", "description", "brand", "price", "count", "sold"};
-        String[] showStrings = {"货号", "名称", "描述", "品牌", "价格(￥)", "库存", "已卖出"};
+        String[] tableStrings = {"orderID", "commodityID", "commodityName", "count", "price"};
+        String[] showStrings = {"订单号", "商品货号", "商品名称", "数量", "总价(￥)"};
+
 
         public void addRow(Map<String, Object> row) {
-            commodityUtils.addCommodity(row);
-            commodityList.add(row);
+            orderCommodityUtils.addOrderCommodity(row);
+            orderCommodityList.add(row);
             size++;
             fireTableDataChanged();
         }
 
-        public void searchRow(Map<String, Object> row) {
-            commodityList = commodityUtils.searchCommodity(row);
+        public void addCommodityCount(int count, int orderID, String commodityID) {
+            orderCommodityUtils.addCommodityCount(count, orderID, commodityID);
+
+            int sz = orderCommodityList.size();
+            for (int i = 0; i < sz; i++) {
+                String commodity = orderCommodityModel.getValueAt(i, 0).toString();
+                orderCommodityList.set(i, orderCommodityUtils.searchOrderCommodity(orderID, commodity));
+            }
             fireTableDataChanged();
         }
 
+        public void remove(int rowIndex, int orderID, String commodityID) {
 
-        public void save() {
-
-            int sz = commodityList.size();
-            for (int i = 0; i < sz; i++) {
-                Map<String, Object> map = commodityList.get(i);
-                commodityUtils.saveCommodity(map);
-            }
-            for (int i = 0; i < sz; i++) {
-                String id = commodityList.get(i).get("id").toString();
-                commodityList.set(i, commodityUtils.searchCommodityByID(id));
-            }
-            fireTableDataChanged();
-
-        }
-
-
-        public void remove(int rowIndex) {
-            //             int id = Integer.parseInt(map.get("id").toString());
-            String id = commodityList.get(rowIndex).get("id").toString();
-            commodityUtils.removeCommodity(id);
-
-            commodityList.remove(rowIndex);
+            orderCommodityUtils.removeOrderCommodity(orderID, commodityID);
+            orderCommodityList.remove(rowIndex);
             size--;
             fireTableDataChanged();
         }
 
-        public void addCommodityCount(int rowIndex, int addCount) {
-            String id = commodityList.get(rowIndex).get("id").toString();
-            commodityUtils.addCommodityCountByID(id, addCount);
-            commodityList.set(rowIndex, commodityUtils.searchCommodityByID(id));
+        public void showOrderID(int orderID) {
+            orderCommodityList = orderCommodityUtils.searchOrderCommodity(orderID);
             fireTableDataChanged();
         }
 
-        public void showAll() {
-            commodityList = commodityUtils.findAllCommodity();
-            fireTableDataChanged();
-        }
-
-        public int getSize() {
-            return size;
-        }
+        //done
 
         //  @Override
         public int getRowCount() {
-            return commodityList.size();
+            return orderCommodityList.size();
         }
 
         //   @Override
         public int getColumnCount() {
-            return tableStrings.length;
+            return tableStrings.length - 1;
         }
 
         //   @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            Map<String, Object> map = commodityList.get(rowIndex);
-            return map.get(tableStrings[columnIndex]);
+            Map<String, Object> map = orderCommodityList.get(rowIndex);
+            if (tableStrings[columnIndex + 1].equals("price"))
+                return Double.parseDouble(map.get(tableStrings[columnIndex + 1]).toString()) *
+                        Double.parseDouble(map.get(tableStrings[columnIndex]).toString());   //计算总价
+            else
+                return map.get(tableStrings[columnIndex + 1]);
         }
 
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return columnIndex > 0 && columnIndex != 6;
+            return false;
         }
 
         @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-            Map<String, Object> map = commodityList.get(rowIndex);
-            map.put(tableStrings[columnIndex], aValue);
+            Map<String, Object> map = orderCommodityList.get(rowIndex);
+            map.put(tableStrings[columnIndex + 1], aValue);
         }
 
         @Override
         public String getColumnName(int column) {
-            return showStrings[column];
+            return showStrings[column + 1];
         }
-    }     */
+    }
 
 }
 

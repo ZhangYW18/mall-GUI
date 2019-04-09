@@ -40,30 +40,20 @@ public class OrderClientUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        Collections.reverse(list);
         return list;
     }
 
-    // Bookmark 2019/4/7
-    //查找客户信息
+    // done
+    // 根据客户查找订单信息
 
-    public List<Map<String, Object>> searchOrderClient(Map<String, Object> row) {
-        String sql = "select * from OrderClient where ";
-        List<Object> params = new ArrayList<Object>();
-
-
-        int cnt=0;
-        for (int i=0;i<tableStrings.length;i++) {
-            if (row.get(tableStrings[i]) == null) continue;
-            if (cnt!=0) sql = sql + " AND ";
-            sql = sql + tableStrings[i] + " LIKE \'%" + row.get(tableStrings[i]) + "%\'";
-            cnt++;
-        }
+    public List<Map<String, Object>> searchOrderClientByClientID(int clientID) {
+        String sql = "select * from OrderClient where ClientID = " + clientID;
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {
             list = jdbcUtils.findModeResult(sql, null);
             // System.out.println(list);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -107,11 +97,12 @@ public class OrderClientUtils {
     }
 
     //删除一个客户
+    // done
 
-    public boolean removeOrderClient(String id) {
-        String sql = "delete from OrderClient where id = ?";
+    public boolean removeOrderClient(String orderID) {
+        String sql = "delete from OrderClient where orderID LIKE ?";
         List<Object> params = new ArrayList<Object>();
-        params.add(id);
+        params.add(orderID);
         boolean flag = false;
         try {
             flag = jdbcUtils.updateByPreparedStatement(sql, params);
@@ -172,6 +163,21 @@ public class OrderClientUtils {
         boolean flag = false;
         try {
             flag = jdbcUtils.updateByPreparedStatement(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public boolean updateMoney(int orderID, double money) {
+        Date date = new Date();
+        Timestamp timeStamp = new Timestamp(date.getTime());
+        String sql = "";
+        sql = "update OrderClient set money = money + (" + money +") where orderID = " + orderID;
+
+        boolean flag = false;
+        try {
+            flag = jdbcUtils.updateByPreparedStatement(sql, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }

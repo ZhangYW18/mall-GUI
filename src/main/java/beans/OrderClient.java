@@ -12,9 +12,8 @@ import java.util.Map;
 public class OrderClient {
     private int orderID;
     private int clientID;
-    private String clientName;
     private Date startTime;
-    private int money;
+  //  private double money;     //should be gotten through sum() in sql
     private boolean isPaid;
     private boolean isSent;
     private Date sentTime;

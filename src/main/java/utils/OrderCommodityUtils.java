@@ -126,7 +126,7 @@ public class OrderCommodityUtils {
     }
 
 
-    // 更新
+    // 更新数量
     // done
 
     public boolean addCommodityCount(int count, int orderID, String commodityID) {

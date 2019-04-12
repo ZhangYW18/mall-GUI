@@ -17,7 +17,7 @@ import utils.*;
 
 public class ClientUtils {
     private JdbcUtils jdbcUtils;
-    private String[] tableStrings = {"id", "name", "address", "phone", "email", "company"};
+    private String[] tableStrings = {"id", "name", "address", "phone", "email", "company", "account", "taxNumber"};
 
     public ClientUtils() {
         jdbcUtils = new JdbcUtils();
@@ -91,7 +91,7 @@ public class ClientUtils {
     //增加一个客户
 
     public boolean addClient(Map<String, Object> row) {
-        String sql = "insert into Client values (?, ?, ?, ?, ?, ?)";
+        String sql = "insert into Client values (?, ?, ?, ?, ?, ?, ?, ?)";
         List<Object> params = new ArrayList<Object>();
 
         for (int i=0;i<tableStrings.length;i++) {
@@ -128,7 +128,8 @@ public class ClientUtils {
     public boolean saveClient(Map<String, Object> map) {
         String sql = "";
         if (map.containsKey("id")) {
-            sql = "update Client set name = ? , address = ?, phone = ?, email = ?, company = ? where id = ?";
+            sql = "update Client set name = ? , address = ?, phone = ?, email = ?, company = ?, " +
+                    "taxNumber = ?, account = ? where id = ?";
         }
 
         List<Object> params = new ArrayList<Object>();
@@ -137,6 +138,8 @@ public class ClientUtils {
         params.add(map.get("phone"));
         params.add(map.get("email"));
         params.add(map.get("company"));
+        params.add(map.get("taxNumber"));
+        params.add(map.get("account"));
         params.add(map.get("id"));
 
    //     System.out.println(map.get("address"));

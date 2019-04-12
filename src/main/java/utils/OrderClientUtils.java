@@ -30,7 +30,7 @@ public class OrderClientUtils {
     // done
 
     public List<Map<String, Object>> findAllOrderClient() {
-        String sql = "select * from OrderClient";
+        String sql = "select * from OrderClient order by orderID desc";
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {
@@ -47,8 +47,8 @@ public class OrderClientUtils {
     // done
     // 根据客户查找订单信息
 
-    public List<Map<String, Object>> searchOrderClientByClientID(int clientID) {
-        String sql = "select * from OrderClient where ClientID = " + clientID;
+    public List<Map<String, Object>> searchOrder(int clientID) {
+        String sql = "select * from OrderClient where clientID = " + clientID;
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {
@@ -60,6 +60,24 @@ public class OrderClientUtils {
         return list;
     }
 
+    // 根据商品查找订单信息
+    public List<Map<String, Object>> searchOrder(String commodityID) {
+
+        String sql = "select * from OrderClient where orderID in " +
+                "(select orderID from OrderCommodity where commodityID = ?)";
+        List<Object> params = new ArrayList<Object>();
+        params.add(commodityID);
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        try {
+            list = jdbcUtils.findModeResult(sql, params);
+            // System.out.println(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
     // done
     //根据ID查找订单信息
     public Map<String, Object> searchOrderClientByOrderID(int orderID) {
@@ -68,9 +86,6 @@ public class OrderClientUtils {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             map = jdbcUtils.findSimpleResult(sql, null);
-
-            // System.out.println(map);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -169,15 +184,27 @@ public class OrderClientUtils {
         return flag;
     }
 
-    public boolean updateMoney(int orderID, double money) {
-        Date date = new Date();
-        Timestamp timeStamp = new Timestamp(date.getTime());
-        String sql = "";
-        sql = "update OrderClient set money = money + (" + money +") where orderID = " + orderID;
+    //更新订单总价
 
+    public boolean updateMoney(int orderID) {
+
+        String sql = "";
+
+        sql = "select sum(count*price) from OrderCommodity where orderID = " + orderID + " group by orderID";
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            map = jdbcUtils.findSimpleResult(sql, null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (map.get("sum(count*price)")==null) return true;
+        sql = "update OrderClient set money = ? where orderID = " + orderID;
+        List<Object> params = new ArrayList<Object>();
+        params.add(map.get("sum(count*price)"));
         boolean flag = false;
         try {
-            flag = jdbcUtils.updateByPreparedStatement(sql, null);
+            flag = jdbcUtils.updateByPreparedStatement(sql, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -185,4 +212,3 @@ public class OrderClientUtils {
     }
 
 }
-

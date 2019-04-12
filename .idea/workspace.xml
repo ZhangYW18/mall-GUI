@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52792831-d2b8-4dea-aa63-8f485882f349" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/ReceiptUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beans/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/beans/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beans/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/beans/OrderClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beans/OrderClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/beans/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beans/Receipt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/CommodityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/CommodityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ClientUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ClientUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utils/OrderClientUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/OrderClientUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/beans/Commodity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/beans/Commodity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/beans/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/beans/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/beans/OrderClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/beans/OrderClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/beans/Receipt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/beans/Receipt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$10.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$11.class" afterDir="false" />
@@ -28,6 +31,13 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$20.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$21.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$21.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$22.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$22.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$23.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$23.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$24.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$25.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$25.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$26.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$26.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$27.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$27.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$28.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$28.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$29.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$29.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$5.class" afterDir="false" />
@@ -38,8 +48,9 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$ClientModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$ClientModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$CommodityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$CommodityModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderClientModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderClientModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderCommodityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderCommodityModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/CommodityUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/CommodityUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utils/ClientUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/ClientUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/utils/OrderClientUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/OrderClientUtils.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -67,114 +78,76 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="-3722">
+              <caret line="288" column="39" selection-start-line="288" selection-start-column="39" selection-end-line="288" selection-end-column="39" />
               <folding>
-                <element signature="e#0#84319#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#6814#7112#0" expanded="true" />
-                <element signature="e#7111#7112#0" expanded="true" />
-                <element signature="e#7200#8299#0" expanded="true" />
-                <element signature="e#8298#8299#0" expanded="true" />
-                <element signature="e#8413#9305#0" expanded="true" />
-                <element signature="e#9304#9305#0" expanded="true" />
-                <element signature="e#9395#9946#0" expanded="true" />
-                <element signature="e#9945#9946#0" expanded="true" />
-                <element signature="e#10037#10213#0" expanded="true" />
-                <element signature="e#10212#10213#0" expanded="true" />
-                <element signature="e#10306#10486#0" expanded="true" />
-                <element signature="e#10485#10486#0" expanded="true" />
-                <element signature="e#10612#11039#0" expanded="true" />
-                <element signature="e#11038#11039#0" expanded="true" />
-                <element signature="e#11129#11427#0" expanded="true" />
-                <element signature="e#11426#11427#0" expanded="true" />
-                <element signature="e#11521#11819#0" expanded="true" />
-                <element signature="e#11818#11819#0" expanded="true" />
-                <element signature="e#11910#13642#0" expanded="true" />
-                <element signature="e#13641#13642#0" expanded="true" />
-                <element signature="e#13736#14159#0" expanded="true" />
-                <element signature="e#14158#14159#0" expanded="true" />
-                <element signature="e#14252#15047#0" expanded="true" />
-                <element signature="e#15046#15047#0" expanded="true" />
-                <element signature="e#15141#15320#0" expanded="true" />
-                <element signature="e#15319#15320#0" expanded="true" />
-                <element signature="e#15423#16006#0" expanded="true" />
-                <element signature="e#16005#16006#0" expanded="true" />
-                <element signature="e#16101#16284#0" expanded="true" />
-                <element signature="e#16283#16284#0" expanded="true" />
-                <element signature="e#16418#16717#0" expanded="true" />
-                <element signature="e#16716#16717#0" expanded="true" />
-                <element signature="e#16835#18453#0" expanded="true" />
-                <element signature="e#18452#18453#0" expanded="true" />
-                <element signature="e#18544#19368#0" expanded="true" />
-                <element signature="e#19367#19368#0" expanded="true" />
-                <element signature="e#19463#19648#0" expanded="true" />
-                <element signature="e#19647#19648#0" expanded="true" />
-                <element signature="e#19749#20462#0" expanded="true" />
-                <element signature="e#20461#20462#0" expanded="true" />
-                <element signature="e#20563#21392#0" expanded="true" />
-                <element signature="e#21391#21392#0" expanded="true" />
-                <element signature="e#21491#22250#0" expanded="true" />
-                <element signature="e#22249#22250#0" expanded="true" />
-                <element signature="e#22446#22998#0" expanded="true" />
-                <element signature="e#22997#22998#0" expanded="true" />
-                <element signature="e#23097#23524#0" expanded="true" />
-                <element signature="e#23523#23524#0" expanded="true" />
-                <element signature="e#23623#23922#0" expanded="true" />
-                <element signature="e#23921#23922#0" expanded="true" />
-                <element signature="e#24020#26579#0" expanded="true" />
-                <element signature="e#25662#25678#0" expanded="true" />
-                <element signature="e#26578#26579#0" expanded="true" />
-                <element signature="e#26680#28762#0" expanded="true" />
-                <element signature="e#28761#28762#0" expanded="true" />
-                <element signature="e#28865#30496#0" expanded="true" />
-                <element signature="e#30495#30496#0" expanded="true" />
-                <element signature="e#30581#30746#0" expanded="true" />
-                <element signature="e#30745#30746#0" expanded="true" />
-                <element signature="initializer##0;class#Admin#0" expanded="true" />
-                <element signature="e#29821#68297#0" />
-                <element signature="e#69485#69486#0" expanded="true" />
-                <element signature="e#69513#69514#0" expanded="true" />
-                <element signature="e#68529#71744#0" />
-                <element signature="e#69339#69340#0" expanded="true" />
-                <element signature="e#69402#69403#0" expanded="true" />
-                <element signature="e#70781#70782#0" expanded="true" />
-                <element signature="e#70816#70817#0" expanded="true" />
-                <element signature="e#70874#70875#0" expanded="true" />
-                <element signature="e#70922#70923#0" expanded="true" />
-                <element signature="e#70984#70985#0" expanded="true" />
-                <element signature="e#71034#71035#0" expanded="true" />
-                <element signature="e#71343#71344#0" expanded="true" />
-                <element signature="e#71389#71390#0" expanded="true" />
-                <element signature="e#71686#71687#0" expanded="true" />
-                <element signature="e#71736#71737#0" expanded="true" />
-                <element signature="e#71750#75242#0" />
-                <element signature="e#74250#74251#0" expanded="true" />
-                <element signature="e#74285#74286#0" expanded="true" />
-                <element signature="e#74343#74344#0" expanded="true" />
-                <element signature="e#74394#74395#0" expanded="true" />
-                <element signature="e#74456#74457#0" expanded="true" />
-                <element signature="e#74506#74507#0" expanded="true" />
-                <element signature="e#74818#74819#0" expanded="true" />
-                <element signature="e#74884#74885#0" expanded="true" />
-                <element signature="e#75184#75185#0" expanded="true" />
-                <element signature="e#75234#75235#0" expanded="true" />
-                <element signature="e#75248#80325#0" />
-                <element signature="e#77203#77204#0" expanded="true" />
-                <element signature="e#77238#77239#0" expanded="true" />
-                <element signature="e#77296#77297#0" expanded="true" />
-                <element signature="e#77349#77350#0" expanded="true" />
-                <element signature="e#77411#77412#0" expanded="true" />
-                <element signature="e#77461#77462#0" expanded="true" />
-                <element signature="e#78028#78029#0" expanded="true" />
-                <element signature="e#78075#78076#0" expanded="true" />
-                <element signature="e#78377#78378#0" expanded="true" />
-                <element signature="e#78427#78428#0" expanded="true" />
-                <element signature="e#78441#81233#0" />
-                <element signature="e#80055#80056#0" expanded="true" />
-                <element signature="e#80111#80112#0" expanded="true" />
-                <element signature="e#80173#80174#0" expanded="true" />
-                <element signature="e#80227#80228#0" expanded="true" />
+                <element signature="e#32886#33526#0" expanded="true" />
+                <element signature="e#33525#33526#0" expanded="true" />
+                <element signature="e#34946#36307#0" expanded="true" />
+                <element signature="e#36306#36307#0" expanded="true" />
+                <element signature="e#37896#85750#0" />
+                <element signature="e#85840#85841#0" expanded="true" />
+                <element signature="e#85868#85869#0" expanded="true" />
+                <element signature="e#85982#89240#0" />
+                <element signature="e#86835#86836#0" expanded="true" />
+                <element signature="e#86898#86899#0" expanded="true" />
+                <element signature="e#88277#88278#0" expanded="true" />
+                <element signature="e#88312#88313#0" expanded="true" />
+                <element signature="e#88370#88371#0" expanded="true" />
+                <element signature="e#88418#88419#0" expanded="true" />
+                <element signature="e#88480#88481#0" expanded="true" />
+                <element signature="e#88530#88531#0" expanded="true" />
+                <element signature="e#88839#88840#0" expanded="true" />
+                <element signature="e#88885#88886#0" expanded="true" />
+                <element signature="e#89182#89183#0" expanded="true" />
+                <element signature="e#89232#89233#0" expanded="true" />
+                <element signature="e#89246#92738#0" />
+                <element signature="e#91746#91747#0" expanded="true" />
+                <element signature="e#91781#91782#0" expanded="true" />
+                <element signature="e#91839#91840#0" expanded="true" />
+                <element signature="e#91890#91891#0" expanded="true" />
+                <element signature="e#91952#91953#0" expanded="true" />
+                <element signature="e#92002#92003#0" expanded="true" />
+                <element signature="e#92314#92315#0" expanded="true" />
+                <element signature="e#92380#92381#0" expanded="true" />
+                <element signature="e#92680#92681#0" expanded="true" />
+                <element signature="e#92730#92731#0" expanded="true" />
+                <element signature="e#93437#96322#0" />
+                <element signature="e#96328#98705#0" />
+                <element signature="e#98753#98754#0" expanded="true" />
+                <element signature="e#98802#98803#0" expanded="true" />
+                <element signature="e#98864#98865#0" expanded="true" />
+                <element signature="e#98914#98915#0" expanded="true" />
+                <element signature="e#99224#99225#0" expanded="true" />
+                <element signature="e#99270#99271#0" expanded="true" />
+                <element signature="e#99568#99569#0" expanded="true" />
+                <element signature="e#99618#99619#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utils/OrderClientUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="358">
+              <caret line="198" column="9" lean-forward="true" selection-start-line="198" selection-start-column="9" selection-end-line="198" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5548#5564#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1596">
+              <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,6 +156,42 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.form">
           <provider selected="true" editor-type-id="ui-designer" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utils/ReceiptUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-9">
+              <caret line="120" column="20" lean-forward="true" selection-start-line="120" selection-start-column="20" selection-end-line="120" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/beans/Receipt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utils/JdbcUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="87" column="30" lean-forward="true" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1958#1973#0" expanded="true" />
+                <element signature="e#3107#3128#0" expanded="true" />
+                <element signature="e#3715#3731#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -205,6 +214,10 @@
       <find>保存客户修改</find>
       <find>searchclientbyid</find>
       <find>addCommodityCount</find>
+      <find>change</find>
+      <find>updateCommodity</find>
+      <find>searchorder</find>
+      <find>updateAll</find>
     </findStrings>
     <replaceStrings>
       <replace>clientTable</replace>
@@ -242,20 +255,21 @@
         <option value="$PROJECT_DIR$/src/main/java/utils/UICommonUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vampire/ui/Login.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/JdbcUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/beans/Client.java" />
-        <option value="$PROJECT_DIR$/src/main/java/utils/ClientUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/TextUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/DoubleDocument.java" />
         <option value="$PROJECT_DIR$/src/main/java/beans/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/OrderUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/beans/OrderClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/beans/OrderCommodity.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/CommodityUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/beans/Commodity.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/beans/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/utils/ClientUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/beans/OrderClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/beans/Receipt.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.form" />
-        <option value="$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/utils/ReceiptUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/OrderClientUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.java" />
       </list>
@@ -286,6 +300,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,38 +332,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="beans" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-GUI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-GUI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="e9f4de52:FormNode" />
-            </path>
-            <path>
-              <item name="mall-GUI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mall-GUI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -364,7 +357,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="320" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="195" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -426,7 +419,7 @@
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13462605" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12465374" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -442,8 +435,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286026" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286026" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32751092" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32969433" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32969433" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.2498615" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -614,13 +607,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utils/OrderUtils.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/beans/Order.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/beans/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utils/LoginLogoutUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -632,31 +618,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utils/ClientUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-874">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2144#2160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vampire/ui/Login.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1311">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beans/OrderClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -667,20 +632,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beans/Receipt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -695,30 +646,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utils/JdbcUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/beans/OrderClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utils/OrderClientUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        <state relative-caret-position="299">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -732,119 +663,141 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beans/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utils/ClientUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2395">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beans/Receipt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar!/com/mysql/cj/jdbc/ConnectionImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="1255" selection-start-line="1255" selection-end-line="1255" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utils/ReceiptUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="120" column="20" lean-forward="true" selection-start-line="120" selection-start-column="20" selection-end-line="120" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1596">
+          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utils/JdbcUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="87" column="30" lean-forward="true" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1958#1973#0" expanded="true" />
+            <element signature="e#3107#3128#0" expanded="true" />
+            <element signature="e#3715#3731#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utils/OrderClientUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="198" column="9" lean-forward="true" selection-start-line="198" selection-start-column="9" selection-end-line="198" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5548#5564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="-3722">
+          <caret line="288" column="39" selection-start-line="288" selection-start-column="39" selection-end-line="288" selection-end-column="39" />
           <folding>
-            <element signature="e#0#84319#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#6814#7112#0" expanded="true" />
-            <element signature="e#7111#7112#0" expanded="true" />
-            <element signature="e#7200#8299#0" expanded="true" />
-            <element signature="e#8298#8299#0" expanded="true" />
-            <element signature="e#8413#9305#0" expanded="true" />
-            <element signature="e#9304#9305#0" expanded="true" />
-            <element signature="e#9395#9946#0" expanded="true" />
-            <element signature="e#9945#9946#0" expanded="true" />
-            <element signature="e#10037#10213#0" expanded="true" />
-            <element signature="e#10212#10213#0" expanded="true" />
-            <element signature="e#10306#10486#0" expanded="true" />
-            <element signature="e#10485#10486#0" expanded="true" />
-            <element signature="e#10612#11039#0" expanded="true" />
-            <element signature="e#11038#11039#0" expanded="true" />
-            <element signature="e#11129#11427#0" expanded="true" />
-            <element signature="e#11426#11427#0" expanded="true" />
-            <element signature="e#11521#11819#0" expanded="true" />
-            <element signature="e#11818#11819#0" expanded="true" />
-            <element signature="e#11910#13642#0" expanded="true" />
-            <element signature="e#13641#13642#0" expanded="true" />
-            <element signature="e#13736#14159#0" expanded="true" />
-            <element signature="e#14158#14159#0" expanded="true" />
-            <element signature="e#14252#15047#0" expanded="true" />
-            <element signature="e#15046#15047#0" expanded="true" />
-            <element signature="e#15141#15320#0" expanded="true" />
-            <element signature="e#15319#15320#0" expanded="true" />
-            <element signature="e#15423#16006#0" expanded="true" />
-            <element signature="e#16005#16006#0" expanded="true" />
-            <element signature="e#16101#16284#0" expanded="true" />
-            <element signature="e#16283#16284#0" expanded="true" />
-            <element signature="e#16418#16717#0" expanded="true" />
-            <element signature="e#16716#16717#0" expanded="true" />
-            <element signature="e#16835#18453#0" expanded="true" />
-            <element signature="e#18452#18453#0" expanded="true" />
-            <element signature="e#18544#19368#0" expanded="true" />
-            <element signature="e#19367#19368#0" expanded="true" />
-            <element signature="e#19463#19648#0" expanded="true" />
-            <element signature="e#19647#19648#0" expanded="true" />
-            <element signature="e#19749#20462#0" expanded="true" />
-            <element signature="e#20461#20462#0" expanded="true" />
-            <element signature="e#20563#21392#0" expanded="true" />
-            <element signature="e#21391#21392#0" expanded="true" />
-            <element signature="e#21491#22250#0" expanded="true" />
-            <element signature="e#22249#22250#0" expanded="true" />
-            <element signature="e#22446#22998#0" expanded="true" />
-            <element signature="e#22997#22998#0" expanded="true" />
-            <element signature="e#23097#23524#0" expanded="true" />
-            <element signature="e#23523#23524#0" expanded="true" />
-            <element signature="e#23623#23922#0" expanded="true" />
-            <element signature="e#23921#23922#0" expanded="true" />
-            <element signature="e#24020#26579#0" expanded="true" />
-            <element signature="e#25662#25678#0" expanded="true" />
-            <element signature="e#26578#26579#0" expanded="true" />
-            <element signature="e#26680#28762#0" expanded="true" />
-            <element signature="e#28761#28762#0" expanded="true" />
-            <element signature="e#28865#30496#0" expanded="true" />
-            <element signature="e#30495#30496#0" expanded="true" />
-            <element signature="e#30581#30746#0" expanded="true" />
-            <element signature="e#30745#30746#0" expanded="true" />
-            <element signature="initializer##0;class#Admin#0" expanded="true" />
-            <element signature="e#29821#68297#0" />
-            <element signature="e#69485#69486#0" expanded="true" />
-            <element signature="e#69513#69514#0" expanded="true" />
-            <element signature="e#68529#71744#0" />
-            <element signature="e#69339#69340#0" expanded="true" />
-            <element signature="e#69402#69403#0" expanded="true" />
-            <element signature="e#70781#70782#0" expanded="true" />
-            <element signature="e#70816#70817#0" expanded="true" />
-            <element signature="e#70874#70875#0" expanded="true" />
-            <element signature="e#70922#70923#0" expanded="true" />
-            <element signature="e#70984#70985#0" expanded="true" />
-            <element signature="e#71034#71035#0" expanded="true" />
-            <element signature="e#71343#71344#0" expanded="true" />
-            <element signature="e#71389#71390#0" expanded="true" />
-            <element signature="e#71686#71687#0" expanded="true" />
-            <element signature="e#71736#71737#0" expanded="true" />
-            <element signature="e#71750#75242#0" />
-            <element signature="e#74250#74251#0" expanded="true" />
-            <element signature="e#74285#74286#0" expanded="true" />
-            <element signature="e#74343#74344#0" expanded="true" />
-            <element signature="e#74394#74395#0" expanded="true" />
-            <element signature="e#74456#74457#0" expanded="true" />
-            <element signature="e#74506#74507#0" expanded="true" />
-            <element signature="e#74818#74819#0" expanded="true" />
-            <element signature="e#74884#74885#0" expanded="true" />
-            <element signature="e#75184#75185#0" expanded="true" />
-            <element signature="e#75234#75235#0" expanded="true" />
-            <element signature="e#75248#80325#0" />
-            <element signature="e#77203#77204#0" expanded="true" />
-            <element signature="e#77238#77239#0" expanded="true" />
-            <element signature="e#77296#77297#0" expanded="true" />
-            <element signature="e#77349#77350#0" expanded="true" />
-            <element signature="e#77411#77412#0" expanded="true" />
-            <element signature="e#77461#77462#0" expanded="true" />
-            <element signature="e#78028#78029#0" expanded="true" />
-            <element signature="e#78075#78076#0" expanded="true" />
-            <element signature="e#78377#78378#0" expanded="true" />
-            <element signature="e#78427#78428#0" expanded="true" />
-            <element signature="e#78441#81233#0" />
-            <element signature="e#80055#80056#0" expanded="true" />
-            <element signature="e#80111#80112#0" expanded="true" />
-            <element signature="e#80173#80174#0" expanded="true" />
-            <element signature="e#80227#80228#0" expanded="true" />
+            <element signature="e#32886#33526#0" expanded="true" />
+            <element signature="e#33525#33526#0" expanded="true" />
+            <element signature="e#34946#36307#0" expanded="true" />
+            <element signature="e#36306#36307#0" expanded="true" />
+            <element signature="e#37896#85750#0" />
+            <element signature="e#85840#85841#0" expanded="true" />
+            <element signature="e#85868#85869#0" expanded="true" />
+            <element signature="e#85982#89240#0" />
+            <element signature="e#86835#86836#0" expanded="true" />
+            <element signature="e#86898#86899#0" expanded="true" />
+            <element signature="e#88277#88278#0" expanded="true" />
+            <element signature="e#88312#88313#0" expanded="true" />
+            <element signature="e#88370#88371#0" expanded="true" />
+            <element signature="e#88418#88419#0" expanded="true" />
+            <element signature="e#88480#88481#0" expanded="true" />
+            <element signature="e#88530#88531#0" expanded="true" />
+            <element signature="e#88839#88840#0" expanded="true" />
+            <element signature="e#88885#88886#0" expanded="true" />
+            <element signature="e#89182#89183#0" expanded="true" />
+            <element signature="e#89232#89233#0" expanded="true" />
+            <element signature="e#89246#92738#0" />
+            <element signature="e#91746#91747#0" expanded="true" />
+            <element signature="e#91781#91782#0" expanded="true" />
+            <element signature="e#91839#91840#0" expanded="true" />
+            <element signature="e#91890#91891#0" expanded="true" />
+            <element signature="e#91952#91953#0" expanded="true" />
+            <element signature="e#92002#92003#0" expanded="true" />
+            <element signature="e#92314#92315#0" expanded="true" />
+            <element signature="e#92380#92381#0" expanded="true" />
+            <element signature="e#92680#92681#0" expanded="true" />
+            <element signature="e#92730#92731#0" expanded="true" />
+            <element signature="e#93437#96322#0" />
+            <element signature="e#96328#98705#0" />
+            <element signature="e#98753#98754#0" expanded="true" />
+            <element signature="e#98802#98803#0" expanded="true" />
+            <element signature="e#98864#98865#0" expanded="true" />
+            <element signature="e#98914#98915#0" expanded="true" />
+            <element signature="e#99224#99225#0" expanded="true" />
+            <element signature="e#99270#99271#0" expanded="true" />
+            <element signature="e#99568#99569#0" expanded="true" />
+            <element signature="e#99618#99619#0" expanded="true" />
           </folding>
         </state>
       </provider>

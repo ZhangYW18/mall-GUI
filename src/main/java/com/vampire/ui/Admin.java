@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
+import org.jfree.data.general.*;
 import utils.*;
 
 import java.awt.*;
@@ -21,6 +22,10 @@ import java.awt.event.*;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.List;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 
 public class Admin {
     private JPanel Admin;
@@ -82,6 +87,11 @@ public class Admin {
     private JTextField receiptCommodityID;
     private JTextField receiptClientID;
     private JButton searchReceiptByCommodity;
+    private JButton dataAnalyse;
+    private JPanel JPanelOrder;
+    private JPanel JPanelMoney;
+    private JRadioButton analyseByCommodity;
+    private JRadioButton analyseByClient;
     private JFrame frame;
 
     private ClientModel clientModel;
@@ -89,6 +99,8 @@ public class Admin {
     private OrderClientModel orderClientModel;
     private OrderCommodityModel orderCommodityModel;
     private ReceiptModel receiptModel;
+
+    private DefaultPieDataset orderDataset, moneyDataset;
 
     private boolean isJTextFieldNull(JTextField jTextField, String name) {
         String nameText = jTextField.getText();
@@ -170,7 +182,7 @@ public class Admin {
         orderClientTable.setSelectionModel(orderClientTableSelectionModel);
 
         orderCommodityTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        final ListSelectionModel orderCommodityTableSelectionModel = orderCommodityTable.getSelectionModel();
+        ListSelectionModel orderCommodityTableSelectionModel = orderCommodityTable.getSelectionModel();
         orderCommodityTableSelectionModel
                 .setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         orderCommodityTable.setSelectionModel(orderCommodityTableSelectionModel);
@@ -1070,6 +1082,61 @@ public class Admin {
             }
         });
 
+        //Data Analysis Page
+
+        //数据分析
+
+        orderDataset = new DefaultPieDataset();
+        moneyDataset = new DefaultPieDataset();
+
+        JFreeChart orderChart = ChartFactory.createPieChart("按订单数量分析", orderDataset,
+                true, true, Locale.CHINESE);
+        JFreeChart moneyChart = ChartFactory.createPieChart("按订单总价分析", moneyDataset,
+                true, true, Locale.CHINESE);
+
+        JPanelOrder.setLayout(new BorderLayout());
+        ChartPanel orderChartPanel = new ChartPanel(orderChart);
+        JPanelOrder.add(orderChartPanel, BorderLayout.CENTER);
+        JPanelOrder.validate();
+
+        JPanelMoney.setLayout(new BorderLayout());
+        ChartPanel moneyChartPanel = new ChartPanel(moneyChart);
+        JPanelMoney.add(moneyChartPanel, BorderLayout.CENTER);
+        JPanelMoney.validate();
+
+        //test passed 2019/4/13
+
+        dataAnalyse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                DataUtils dataUtils = new DataUtils();
+                if (analyseByClient.isSelected()) {
+                    List<Map<String, Object>> list = dataUtils.analyseByClient();
+                    orderDataset.clear();
+                    moneyDataset.clear();
+                    int n = list.size();
+                    for (int i = 0; i < n; i++) {
+                        String id = list.get(i).get("clientID").toString();
+                        String name = clientModel.clientUtils.searchClientByID(Integer.parseInt(id)).get("name").toString();
+                        name = id + " " + name;
+                        orderDataset.setValue(name, Integer.parseInt(list.get(i).get("count(clientID)").toString()));
+                        moneyDataset.setValue(name, Double.parseDouble(list.get(i).get("sum(money)").toString()));
+                    }
+                } else {
+                    List<Map<String, Object>> list = dataUtils.analyseByCommodity();
+                    orderDataset.clear();
+                    moneyDataset.clear();
+                    int n = list.size();
+                    for (int i = 0; i < n; i++) {
+                        String id = list.get(i).get("commodityID").toString();
+                        String name = commodityModel.commodityUtils.searchCommodityByID(id).get("name").toString();
+                        name = id + " " + name;
+                        orderDataset.setValue(name, Integer.parseInt(list.get(i).get("sum(count)").toString()));
+                        moneyDataset.setValue(name, Double.parseDouble(list.get(i).get("sum(count*price)").toString()));
+                    }
+                }
+            }
+        });
+
         //退出
         //test passed 2019/4/6
         exitButton.addActionListener(new ActionListener() {
@@ -1379,6 +1446,25 @@ public class Admin {
         searchReceipt = new JButton();
         searchReceipt.setText("按订单号查询发票");
         panel4.add(searchReceipt, new com.intellij.uiDesigner.core.GridConstraints(2, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JPanel panel5 = new JPanel();
+        panel5.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 4, new Insets(0, 0, 0, 0), -1, -1));
+        tabbedPane1.addTab("数据分析", panel5);
+        JPanelMoney = new JPanel();
+        JPanelMoney.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel5.add(JPanelMoney, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(600, -1), new Dimension(650, -1), null, 0, false));
+        JPanelOrder = new JPanel();
+        JPanelOrder.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel5.add(JPanelOrder, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(600, -1), new Dimension(650, -1), null, 0, false));
+        analyseByClient = new JRadioButton();
+        analyseByClient.setSelected(true);
+        analyseByClient.setText("按客户分析");
+        panel5.add(analyseByClient, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        dataAnalyse = new JButton();
+        dataAnalyse.setText("开始！");
+        panel5.add(dataAnalyse, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        analyseByCommodity = new JRadioButton();
+        analyseByCommodity.setText("按商品分析");
+        panel5.add(analyseByCommodity, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
         Admin.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         exitButton = new JButton();
@@ -1397,6 +1483,9 @@ public class Admin {
         buttonGroup = new ButtonGroup();
         buttonGroup.add(searchOrderByClient);
         buttonGroup.add(searchOrderByCommodity);
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(analyseByClient);
+        buttonGroup.add(analyseByCommodity);
     }
 
     /**
@@ -1971,6 +2060,24 @@ public class Admin {
             return showStrings[column];
         }
     }
+
+  /*  private class PieChartDataSet implements Dataset {
+        public void addChangeListener(DatasetChangeListener datasetChangeListener) {
+
+        }
+
+        public void removeChangeListener(DatasetChangeListener datasetChangeListener) {
+
+        }
+
+        public DatasetGroup getGroup() {
+            return null;
+        }
+
+        public void setGroup(DatasetGroup datasetGroup) {
+
+        }
+    }*/
 
 }
 

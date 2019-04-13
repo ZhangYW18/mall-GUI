@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ECharts-3.0.0.6-javadoc">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/ECharts-3.0.0.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

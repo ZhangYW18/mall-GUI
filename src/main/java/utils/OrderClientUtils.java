@@ -40,7 +40,6 @@ public class OrderClientUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        Collections.reverse(list);
         return list;
     }
 
@@ -114,13 +113,12 @@ public class OrderClientUtils {
     //删除一个客户
     // done
 
-    public boolean removeOrderClient(String orderID) {
-        String sql = "delete from OrderClient where orderID LIKE ?";
-        List<Object> params = new ArrayList<Object>();
-        params.add(orderID);
+    public boolean removeOrderClient(int orderID) {
+        String sql = "delete from OrderClient where orderID = " + orderID;
+
         boolean flag = false;
         try {
-            flag = jdbcUtils.updateByPreparedStatement(sql, params);
+            flag = jdbcUtils.updateByPreparedStatement(sql, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -202,6 +200,24 @@ public class OrderClientUtils {
         sql = "update OrderClient set money = ? where orderID = " + orderID;
         List<Object> params = new ArrayList<Object>();
         params.add(map.get("sum(count*price)"));
+        boolean flag = false;
+        try {
+            flag = jdbcUtils.updateByPreparedStatement(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public boolean decOrderID(int id) {
+        String sql = "";
+        sql = "update OrderClient set orderID = ? where orderID = ?";
+
+        List<Object> params = new ArrayList<Object>();
+        params.add(Integer.toString(id-1));
+        params.add(Integer.toString(id));
+
+        //     System.out.println(map.get("address"));
         boolean flag = false;
         try {
             flag = jdbcUtils.updateByPreparedStatement(sql, params);

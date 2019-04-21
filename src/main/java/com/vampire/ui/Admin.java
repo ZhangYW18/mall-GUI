@@ -703,7 +703,7 @@ public class Admin {
                     public void valueChanged(ListSelectionEvent e) {
                         //       System.out.println("左表改变了");
                         if (orderClientTable.getSelectedRow() <= -1) {
-                            orderCommodityModel.orderCommodityList.clear();
+                            orderCommodityModel.clear();
                             return;
                         }
                         int orderID = orderClientModel.getSelectedOrderID();
@@ -1550,13 +1550,13 @@ public class Admin {
                 clientUtils.decClientID(i);
             }
 
-            clientList.remove(rowIndex);
             int sz = clientList.size();
-            for (int i = 0; i < sz; i++) {
-                int nowId = Integer.parseInt(clientList.get(i).get("id").toString());
-                clientList.set(i, clientUtils.searchClientByID(nowId));
+            for (int i = rowIndex; i < sz - 1; i++) {
+                int nowid = Integer.parseInt(clientList.get(i + 1).get("id").toString()) - 1;
+                clientList.set(i, clientUtils.searchClientByID(nowid));
             }
             size--;
+            clientList.remove(sz - 1);
             fireTableDataChanged();
         }
 
@@ -1717,6 +1717,10 @@ public class Admin {
         OrderClientUtils orderClientUtils = new OrderClientUtils();
         List<Map<String, Object>> orderClientList = orderClientUtils.findAllOrderClient();
         private int size = orderClientList.size();
+        String[] tableStrings = {"orderID", "clientID", "clientName", "startTime",
+                "money", "isPaid", "isSent", "sentTime", "hasReceipt"};
+        String[] showStrings = {"订单号", "客户号", "客户姓名", "订单创建时间", "总价(￥)",
+                "是否付款", "是否送出", "送出时间", "是否有发票"};
 
         public int getMaxID() {
             int maxID = 0;
@@ -1736,11 +1740,6 @@ public class Admin {
             }
             fireTableDataChanged();
         }
-
-        String[] tableStrings = {"orderID", "clientID", "clientName", "startTime",
-                "money", "isPaid", "isSent", "sentTime", "hasReceipt"};
-        String[] showStrings = {"订单号", "客户号", "客户姓名", "订单创建时间", "总价(￥)",
-                "是否付款", "是否送出", "送出时间", "是否有发票"};
 
         // done
         public void addRow(Map<String, Object> row) {
@@ -1794,12 +1793,19 @@ public class Admin {
 
         // done
         public void remove(int rowIndex) {
-            //             int id = Integer.parseInt(map.get("id").toString());
-            String orderID = orderClientList.get(rowIndex).get("orderID").toString();
+            int orderID = Integer.parseInt(orderClientList.get(rowIndex).get("orderID").toString());
             orderClientUtils.removeOrderClient(orderID);
+            for (int i = orderID + 1; i <= size; i++) {
+                orderClientUtils.decOrderID(i);
+            }
 
-            orderClientList.remove(rowIndex);
+            int sz = orderClientList.size();
+            for (int i = rowIndex; i > 0; i--) {
+                int nowid = Integer.parseInt(orderClientList.get(i - 1).get("orderID").toString()) - 1;
+                orderClientList.set(i, orderClientUtils.searchOrderClientByOrderID(nowid));
+            }
             size--;
+            orderClientList.remove(0);
             fireTableDataChanged();
         }
 
@@ -1910,6 +1916,11 @@ public class Admin {
             orderCommodityUtils.addOrderCommodity(row);
             orderCommodityList.add(row);
             size++;
+            fireTableDataChanged();
+        }
+
+        public void clear() {
+            orderCommodityList.clear();
             fireTableDataChanged();
         }
 

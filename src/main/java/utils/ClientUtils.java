@@ -47,8 +47,6 @@ public class ClientUtils {
         String sql = "select * from Client where ";
         List<Object> params = new ArrayList<Object>();
 
-
-  //      sql = "select * from Client where TRUE AND sex=1 AND name LIKE \'%so%\' AND address LIKE \'%%\'";
         int cnt=0;
         for (int i=0;i<tableStrings.length;i++) {
             if (tableStrings[i].equals("id")) continue;

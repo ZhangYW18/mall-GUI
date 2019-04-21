@@ -3,7 +3,7 @@
  * @date 19-4-9 下午4:43
  */
 
-package utils;
+package com.vampire.utils;
 
 import javax.sound.midi.Soundbank;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utils.*;
+import com.vampire.utils.*;
 
 public class ReceiptUtils {
 

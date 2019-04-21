@@ -1,4 +1,9 @@
-package beans;
+/*
+ * @author VampireWeekend
+ * @date 19-4-21 下午3:09
+ */
+
+package com.vampire.beans;
 
 public class User {
 

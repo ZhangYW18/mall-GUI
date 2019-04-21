@@ -15,7 +15,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 import org.jfree.data.general.*;
-import utils.*;
+import com.vampire.utils.*;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -1,4 +1,4 @@
-package utils;
+package com.vampire.utils;
 
 import javax.swing.*;
 import java.awt.*;

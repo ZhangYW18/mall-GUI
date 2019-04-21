@@ -1,8 +1,8 @@
 package com.vampire.ui;
 
-import beans.*;
-import utils.*;
+import com.vampire.utils.*;
 import com.vampire.ui.*;
+import com.vampire.beans.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +42,6 @@ public class Login {
                 String username = usernameTextField.getText().trim();
                 String password = passwordTextField.getText().trim();
                 Object userinfo = null;
-
 
                 userinfo = new User(username, password);
 

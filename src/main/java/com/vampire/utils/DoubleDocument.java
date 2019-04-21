@@ -3,7 +3,7 @@
  * @date 19-4-7 下午2:19
  */
 
-package utils;
+package com.vampire.utils;
 
 import java.awt.Toolkit;
 

@@ -1,9 +1,9 @@
-package utils;
+package com.vampire.utils;
 
-import beans.*;
 import java.util.ArrayList;
 import java.util.List;
-import utils.JdbcUtils;
+import com.vampire.utils.JdbcUtils;
+import com.vampire.beans.*;
 
 
 public class LoginLogoutUtils {

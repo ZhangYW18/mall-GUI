@@ -3,7 +3,7 @@
  * @date 19-4-6 下午6:41
  */
 
-package utils;
+package com.vampire.utils;
 
 
 import javax.sound.midi.Soundbank;
@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utils.*;
+import com.vampire.utils.*;
 
 
-public class CommodityUtils {
+public class ClientUtils {
     private JdbcUtils jdbcUtils;
-    private String[] tableStrings = {"id", "name", "description", "brand", "price", "count", "sold"};
+    private String[] tableStrings = {"id", "name", "address", "phone", "email", "company", "account", "taxNumber"};
 
-    public CommodityUtils() {
+    public ClientUtils() {
         jdbcUtils = new JdbcUtils();
         jdbcUtils.getConnection();
     }
@@ -27,8 +27,8 @@ public class CommodityUtils {
 
     //获得所有客户信息
 
-    public List<Map<String, Object>> findAllCommodity() {
-        String sql = "select * from Commodity";
+    public List<Map<String, Object>> findAllClient() {
+        String sql = "select * from Client";
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {
@@ -43,14 +43,13 @@ public class CommodityUtils {
 
     //查找客户信息
 
-    public List<Map<String, Object>> searchCommodity(Map<String, Object> row) {
-        String sql = "select * from Commodity where ";
+    public List<Map<String, Object>> searchClient(Map<String, Object> row) {
+        String sql = "select * from Client where ";
         List<Object> params = new ArrayList<Object>();
 
-
-        //      sql = "select * from Commodity where TRUE AND sex=1 AND name LIKE \'%so%\' AND address LIKE \'%%\'";
         int cnt=0;
         for (int i=0;i<tableStrings.length;i++) {
+            if (tableStrings[i].equals("id")) continue;
             if (row.get(tableStrings[i]) == null) continue;
             if (cnt!=0) sql = sql + " AND ";
             sql = sql + tableStrings[i] + " LIKE \'%" + row.get(tableStrings[i]) + "%\'";
@@ -69,14 +68,17 @@ public class CommodityUtils {
     }
 
     //根据ID查找客户信息
-    public Map<String, Object> searchCommodityByID(String id) {
-        String sql = "select * from Commodity where id LIKE \'" + id + "\'";
+    public Map<String, Object> searchClientByID(int id) {
+        String sql = "select * from Client where id = ?";
+        List<Object> params = new ArrayList<Object>();
+
+        params.add(id);
 
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            map = jdbcUtils.findSimpleResult(sql, null);
+            map = jdbcUtils.findSimpleResult(sql, params);
 
-            // System.out.println(map);
+            // System.out.println(list);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,8 +88,8 @@ public class CommodityUtils {
 
     //增加一个客户
 
-    public boolean addCommodity(Map<String, Object> row) {
-        String sql = "insert into Commodity values (?, ?, ?, ?, ?, ?, ?)";
+    public boolean addClient(Map<String, Object> row) {
+        String sql = "insert into Client values (?, ?, ?, ?, ?, ?, ?, ?)";
         List<Object> params = new ArrayList<Object>();
 
         for (int i=0;i<tableStrings.length;i++) {
@@ -105,8 +107,8 @@ public class CommodityUtils {
 
     //删除一个客户
 
-    public boolean removeCommodity(String id) {
-        String sql = "delete from Commodity where id = ?";
+    public boolean removeClient(int id) {
+        String sql = "delete from Client where id = ?";
         List<Object> params = new ArrayList<Object>();
         params.add(id);
         boolean flag = false;
@@ -121,19 +123,40 @@ public class CommodityUtils {
 
     // 保存一个客户
 
-    public boolean saveCommodity(Map<String, Object> map) {
+    public boolean saveClient(Map<String, Object> map) {
         String sql = "";
         if (map.containsKey("id")) {
-            sql = "update Commodity set name = ? , description = ?, brand = ?, price = ?, count = ? where id = ?";
+            sql = "update Client set name = ? , address = ?, phone = ?, email = ?, company = ?, " +
+                    "taxNumber = ?, account = ? where id = ?";
         }
 
         List<Object> params = new ArrayList<Object>();
         params.add(map.get("name"));
-        params.add(map.get("description"));
-        params.add(map.get("brand"));
-        params.add(map.get("price"));
-        params.add(map.get("count"));
+        params.add(map.get("address"));
+        params.add(map.get("phone"));
+        params.add(map.get("email"));
+        params.add(map.get("company"));
+        params.add(map.get("taxNumber"));
+        params.add(map.get("account"));
         params.add(map.get("id"));
+
+   //     System.out.println(map.get("address"));
+        boolean flag = false;
+        try {
+            flag = jdbcUtils.updateByPreparedStatement(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public boolean decClientID(int id) {
+        String sql = "";
+        sql = "update Client set id = ? where id = ?";
+
+        List<Object> params = new ArrayList<Object>();
+        params.add(Integer.toString(id-1));
+        params.add(Integer.toString(id));
 
         //     System.out.println(map.get("address"));
         boolean flag = false;
@@ -145,42 +168,5 @@ public class CommodityUtils {
         return flag;
     }
 
-    //根据ID增加商品存货
-
-    public boolean addCommodityCountByID(String ID,int count) {
-        String sql = "";
-        sql = "update Commodity set count = count + " +count + " where id = \'" + ID + "\'";
-
-        boolean flag = false;
-        try {
-            flag = jdbcUtils.updateByPreparedStatement(sql, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return flag;
-    }
-
-    //根据ID增加商品卖出数量
-
-    public boolean addCommoditySoldByID(String ID,int sold) {
-        String sql = "";
-        sql = "update Commodity set sold = sold + " + sold + " where id = \'" + ID + "\'";
-
-        boolean flag = false;
-        try {
-            flag = jdbcUtils.updateByPreparedStatement(sql, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sql = "update Commodity set count = count - " + sold + " where id = \'" + ID + "\'";
-
-        try {
-            flag &= jdbcUtils.updateByPreparedStatement(sql, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return flag;
-    }
 }
 

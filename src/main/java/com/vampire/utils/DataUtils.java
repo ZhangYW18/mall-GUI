@@ -3,7 +3,7 @@
  * @date 19-4-13 上午8:55
  */
 
-package utils;
+package com.vampire.utils;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

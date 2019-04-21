@@ -3,13 +3,13 @@
  * @date 19-4-8 下午7:29
  */
 
-package utils;
+package com.vampire.utils;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.*;
 
-import utils.*;
+import com.vampire.utils.*;
 
 public class OrderCommodityUtils {
     private JdbcUtils jdbcUtils;

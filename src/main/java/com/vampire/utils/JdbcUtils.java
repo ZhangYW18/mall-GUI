@@ -1,4 +1,4 @@
-package utils;
+package com.vampire.utils;
 
 import java.lang.reflect.Field;
 import java.sql.*;

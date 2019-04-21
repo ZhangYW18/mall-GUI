@@ -1,62 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="52792831-d2b8-4dea-aa63-8f485882f349" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vampire/beans/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/Commodity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/OrderClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/OrderCommodity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/Receipt.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vampire/ui/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ClientUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/CommodityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/DataUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/DoubleDocument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/JdbcUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/LoginLogoutUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/OrderClientUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/OrderCommodityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ReceiptUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/UICommonUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/beans/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/beans/Commodity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/beans/OrderClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/beans/OrderCommodity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/beans/Receipt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/beans/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$19.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$24.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$28.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$28.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$29.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$29.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$30.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$30.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$35.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$35.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$41.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$41.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$ClientModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$ClientModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$CommodityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$CommodityModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderClientModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderClientModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderCommodityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$OrderCommodityModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$ReceiptModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin$ReceiptModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vampire/ui/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/ClientUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/CommodityUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/DataUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/DoubleDocument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/JdbcUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/LoginLogoutUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/OrderClientUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/OrderCommodityUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/ReceiptUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/UICommonUtils.class" beforeDir="false" />
-    </list>
+    <list default="true" id="52792831-d2b8-4dea-aa63-8f485882f349" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -106,8 +51,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vampire/ui/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1564">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="416">
+              <caret line="173" column="1" lean-forward="true" selection-start-line="173" selection-start-column="1" selection-end-line="173" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -281,25 +229,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="vampire" type="462c0819:PsiDirectoryNode" />
-              <item name="beans" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-GUI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vampire" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mall-GUI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mall-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vampire" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mall-GUI" type="b2602c69:ProjectViewProjectNode" />
@@ -384,12 +314,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969433" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34497815" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34497815" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32532752" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286026" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3133188" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3133188" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.30676857" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32969433" />
@@ -819,8 +749,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vampire/ui/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1564">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        <state relative-caret-position="416">
+          <caret line="173" column="1" lean-forward="true" selection-start-line="173" selection-start-column="1" selection-end-line="173" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
